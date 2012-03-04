@@ -13,8 +13,10 @@ package worlds
 		{
 			add(new Car(Assets.BOXCAR));
 			
-			Game.player = new Player;
+			Game.player = new Player();
+			
 			add(player);
+			add(player.arm);
 		}
 	}
 }
