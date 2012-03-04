@@ -2,7 +2,9 @@ package worlds
 {
 	import entities.*;
 	
+	import flash.ui.Mouse;
 	import net.flashpunk.World;
+	import net.flashpunk.utils.Input;
 	
 	public class Game extends World
 	{
@@ -12,6 +14,9 @@ package worlds
 		public function Game()
 		{
 			add(new Car(Assets.BOXCAR));
+			add(new Cursor());
+			
+			Mouse.hide();
 			
 			Game.player = new Player();
 			

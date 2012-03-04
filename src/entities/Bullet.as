@@ -1,14 +1,15 @@
 package entities
 {
 	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.Mask;
 	import net.flashpunk.graphics.Image;
 	
 	public class Bullet extends Entity
 	{
-		private var img:Image  = Image.createRect(1,4);
-		private static var vel:Number = 20;
+		private var img:Image  = Image.createRect(1,8);
+		private static var vel:Number = 2000;
 		private var angleRad:Number;
 		private var xvel:Number;
 		private var yvel:Number;
@@ -18,9 +19,7 @@ package entities
 			super(x, y, img);
 			
 			img.angle = 180 + angle;
-			angleRad = angle * Math.PI / 180 + (.5 * Math.PI);
-			
-			trace(angleRad);
+			angleRad = angle * Math.PI / 180 + (.5 * Math.PI); 	
 			
 			xvel = vel * Math.cos(-angleRad);
 			yvel = vel * Math.sin(-angleRad);
@@ -28,8 +27,8 @@ package entities
 		
 		override public function update():void
 		{
-			x += xvel;
-			y += yvel;
+			x += xvel * FP.elapsed;
+			y += yvel * FP.elapsed;
 		}
 	}
 }
