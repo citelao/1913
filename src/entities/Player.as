@@ -13,8 +13,7 @@ package entities
 	public class Player extends Entity
 	{		
 		// Body Parts
-		public var arm:Entity = new Entity();
-		private var arm_image:Image = Image.createRect(5,50,0xff55728b);
+		private var arm:Image = Image.createRect(5,50,0xff55728b);
 		private var body:Image = new Image(Assets.PLAYER);
 		
 		// Movement
@@ -34,6 +33,7 @@ package entities
 		
 		private var wouldFire:Boolean = false;
 		private var firing:Boolean = false;
+		private var fireSound:Sfx = new Sfx(Assets.SN_FIRE);
 		
 		private var ammo:int = 6;
 		private var maxAmmo:int = 6;
@@ -42,22 +42,24 @@ package entities
 		{			
 			// Graphics
 			graphic = body;
+			layer = Main.game.level_layers.indexOf("People");
 			
-			arm.graphic = arm_image;
-			arm_image.originX = 3;
-			arm_image.originY = 5;
+			arm.originX = 3;
+			arm.originY = 5;
 			
 			// Input Groups
 			Input.define("walk_left", Key.A, Key.LEFT);
 			Input.define("walk_right", Key.D, Key.RIGHT);
 			Input.define("pick_up", Key.W, Key.UP);
 			Input.define("drop", Key.S, Key.DOWN);
-			Input.define("fire", Key.X);
-			Input.define("reload", Key.R, Key.F);
+			Input.define("fire", Key.X); //and mousePressed
+			Input.define("reload", Key.R, Key.F, Key.C);
 			
 			// Default Start Pos
-			y = 384;
+			y = 403;
 			x = 457;
+			
+			Main.game.addGraphic(arm, Main.game.level_layers.indexOf("People")-1);
 		}
 		
 		override public function update():void
@@ -116,7 +118,8 @@ package entities
 			
 			if(firing) 
 			{
-				world.add(new Bullet(x+15, y+24, arm_image.angle - 180));
+				world.add(new Bullet(x+15, y+24, arm.angle - 180));
+				fireSound.play();
 				ammo--;
 				reloadCount = 0;
 				return;
@@ -175,7 +178,7 @@ package entities
 			
 			arm.y = y+20;
 			
-			arm_image.angle = 180 + 180 * Math.atan2(arm.x - Input.mouseX, arm.y - Input.mouseY) / Math.PI;
+			arm.angle = 180 + 180 * Math.atan2(arm.x - Input.mouseX, arm.y - Input.mouseY) / Math.PI;
 		}
 	}
 }

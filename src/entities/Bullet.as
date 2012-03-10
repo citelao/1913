@@ -18,6 +18,8 @@ package entities
 		{
 			super(x, y, img);
 			
+			layer = Main.game.level_layers.indexOf("People");
+			
 			img.angle = 180 + angle;
 			angleRad = angle * Math.PI / 180 + (.5 * Math.PI); 	
 			

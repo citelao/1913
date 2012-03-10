@@ -1,0 +1,19 @@
+<project>
+	<name>1913 Tilemap</name>
+	
+	<settings>
+		<defaultWidth>1024</defaultWidth>
+		<defaultHeight>768</defaultHeight>
+	</settings>	
+	
+	<object>
+	</object>
+	
+	<tilesets>
+		<tileset name="debug" image="assets/graphics/Tilemap.png" tileWidth="32" tileHeight="32" />
+	</tilesets>
+	
+	<layers>
+		<tiles name="base" gridSize="32" />
+	</layers>
+</project>
