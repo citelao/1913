@@ -15,7 +15,7 @@ package worlds
 	
 	public class Game extends World
 	{
-		public var level_layers:Array = ["HUD", "Front", "People", "Debug"];
+		public var level_layers:Array = ["HUD", "Front", "People", "Debug", "Rain"];
 		
 		public var player:Player;
 		
@@ -26,21 +26,20 @@ package worlds
 		public function Game()
 		{
 			Main.game = this;
-			
-			
-//			add(new Level(Assets.LV_DEBUG));
-			
+						
 			Mouse.hide();
 			
 			player = new Player();
-			
 			tiles = new Tilemap(Assets.TILEMAP, 1024, 768, Assets.TILE_WIDTH, Assets.TILE_HEIGHT);
+			grid = new Grid(1024, 768, Assets.TILE_WIDTH, Assets.TILE_HEIGHT, 0, 0);
 			
 			addGraphic(tiles, level_layers.indexOf("Debug"));
 			
 			add(player);
 			
 			add(new Cursor());
+			
+			addGraphic(new Rain(), level_layers.indexOf("Rain"));
 			
 			load(level);
 		}

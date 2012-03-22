@@ -13,7 +13,7 @@ package entities
 	public class Player extends Entity
 	{		
 		// Body Parts
-		private var arm:Image = Image.createRect(5,50,0xff55728b);
+		private var arm:Image = Image.createRect(5,50,0xff000000);
 		private var body:Image = new Image(Assets.PLAYER);
 		
 		// Movement
