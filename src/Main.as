@@ -19,7 +19,7 @@ package
 		
 		override public function init():void
 		{
-			FP.screen.color = 0x002d1739;
+			FP.screen.color = 0x0023192c;	
 		}
 	}
 }
